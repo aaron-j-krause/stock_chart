@@ -1,3 +1,11 @@
 h1 {
   background-color: red;
 }
+
+svg {
+  border: 1px solid blue;
+}
+
+circle {
+  color: black;
+}
