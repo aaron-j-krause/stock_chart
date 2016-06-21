@@ -1,10 +1,12 @@
 const gulp = require('gulp');
 const webpack = require('webpack-stream');
+const sass = require('gulp-sass');
 
 const paths = {
   js: './app/client.jsx',
   html: './app/index.html',
-  css: './app/**/*.css'
+  scss: './app/**/*.scss',
+  build: './build'
 };
 
 const webpackConf = {
@@ -25,15 +27,21 @@ const webpackConf = {
   }
 };
 
+gulp.task('sass', () => {
+  return gulp.src(paths.scss)
+    .pipe(sass())
+    .pipe(gulp.dest(paths.build));
+});
+
 gulp.task('copy', () => {
-  return gulp.src([paths.html, paths.css])
-    .pipe(gulp.dest('./build'));
+  return gulp.src(paths.html)
+    .pipe(gulp.dest(paths.build));
 });
 
 gulp.task('bundle', () => {
   return gulp.src(paths.js)
     .pipe(webpack(webpackConf))
-    .pipe(gulp.dest('build'));
+    .pipe(gulp.dest(paths.build));
 });
 
-gulp.task('default', ['copy', 'bundle']);
+gulp.task('default', ['copy', 'sass', 'bundle']);
