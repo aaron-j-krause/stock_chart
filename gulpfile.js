@@ -44,4 +44,9 @@ gulp.task('bundle', () => {
     .pipe(gulp.dest(paths.build));
 });
 
+
 gulp.task('default', ['copy', 'sass', 'bundle']);
+
+gulp.task('watch', () => {
+  gulp.watch('./app/**/*', ['default']);
+});
