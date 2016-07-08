@@ -1,0 +1,1 @@
+exports.StockSelector = require('./stock_selector.jsx');

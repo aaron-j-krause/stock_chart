@@ -3,7 +3,7 @@ const webpack = require('webpack-stream');
 const sass = require('gulp-sass');
 
 const paths = {
-  js: './app/client.jsx',
+  js: './app/js/client.jsx',
   html: './app/index.html',
   scss: './app/**/*.scss',
   build: './build'
@@ -14,7 +14,7 @@ const webpackConf = {
     loaders: [
       {
         test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /node_modules/,
         loader: 'babel',
         query: {
           presets: ['es2015', 'react']
