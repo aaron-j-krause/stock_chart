@@ -3,6 +3,18 @@ import ReactDom from 'react-dom';
 import request  from 'superagent';
 import {LineChart} from 'rd3';
 import {StockSelector} from './components';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import stocksApp from './reducers';
+import ChangeStock from './containers/change_stock'
+
+
+import StockChanger from './components/stock_changer';
+
+import { changeStock } from './actions';
+
+
+const store = createStore(stocksApp);
 
 class ControllerView extends React.Component {
   constructor(props) {
@@ -61,12 +73,15 @@ class ControllerView extends React.Component {
         width={1000}
       />);
 
-    return (<main>
-              <h1>Adjusted Close For {this.state.stock}</h1>
-              {chart}
-              <StockSelector newStock={this.newStock.bind(this)}/>
-              <input type="date" onChange={this.getDates}></input>
-            </main>);
+    return (<Provider store={store}>
+              <main>
+                <h1>Adjusted Close For {this.state.stock}</h1>
+                {chart}
+                <StockSelector newStock={this.newStock.bind(this)}/>
+                <ChangeStock />
+                <input type="date" onChange={this.getDates}></input>
+              </main>
+            </Provider>);
   }
 }
 
