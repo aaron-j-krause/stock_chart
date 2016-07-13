@@ -1,5 +1,6 @@
 const initialState = {
-  stock: 'AAPL'
+  stock: 'AAPL',
+  isFetching: false
 };
 
 const stocksApp = (state = initialState, action) => {
@@ -7,11 +8,13 @@ const stocksApp = (state = initialState, action) => {
   switch (action.type) {
   case 'CHANGE_STOCK':
     return Object.assign({}, state, {
-      stock: action.stock
+      stock: action.stock,
+      isFetching: true
     });
   case 'UPDATE_STOCK':
     return Object.assign({}, state, {
-      stockData: action.stockData
+      stockData: action.stockData,
+      isFetching: false
     });
   }
   return state;

@@ -2,8 +2,8 @@ import React          from 'react';
 import { LineChart }  from 'rd3';
 import Spinner        from 'react-spinner'
 
-const Chart = ({stockData}) => {
-  if (!stockData) {
+const Chart = ({stockData, isFetching}) => {
+  if (isFetching) {
     return (<div className="spinner">
       </div>)
   }
