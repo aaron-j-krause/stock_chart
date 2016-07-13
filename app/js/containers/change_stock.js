@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import StockChanger from '../components/stock_changer';
-import { changeStock } from '../actions';
+import { changeStock, getStocks } from '../actions';
 
 const mapStateToProps = (state) => {
   return {}
@@ -8,8 +8,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onStockChange: (stock) =>  {
-      dispatch(changeStock(stock));
+    onGetStocks: (stock) => {
+      dispatch(getStocks(stock));
     }
   };
 };

@@ -10,4 +10,11 @@ circle {
   color: black;
 }
 
-
+.spinner {
+  width: 1000px;
+  height: 500px;
+  border: 1px solid blue;
+  background-image: url("./ajax-loader.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+}

@@ -3,10 +3,11 @@ const webpack = require('webpack-stream');
 const sass = require('gulp-sass');
 
 const paths = {
-  js: './app/js/client.jsx',
+  js: './app/js/client.js',
   html: './app/index.html',
   scss: './app/**/*.scss',
-  build: './build'
+  build: './build',
+  assets: './assets/*'
 };
 
 const webpackConf = {
@@ -38,6 +39,11 @@ gulp.task('copy', () => {
     .pipe(gulp.dest(paths.build));
 });
 
+gulp.task('copy:assets', () => {
+  return gulp.src(paths.assets)
+    .pipe(gulp.dest(paths.build));
+});
+
 gulp.task('bundle', () => {
   return gulp.src(paths.js)
     .pipe(webpack(webpackConf))
@@ -45,7 +51,7 @@ gulp.task('bundle', () => {
 });
 
 
-gulp.task('default', ['copy', 'sass', 'bundle']);
+gulp.task('default', ['copy', 'copy:assets', 'sass', 'bundle']);
 
 gulp.task('watch', () => {
   gulp.watch('./app/**/*', ['default']);

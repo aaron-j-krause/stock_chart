@@ -1,9 +1,8 @@
 import React from 'react';
 
-const StockChanger = ({onStockChange}) => (
+const StockChanger = ({onGetStocks}) => (
     <select onChange={(e) => {
-      console.log(onStockChange);
-      onStockChange(e.target.value);
+      onGetStocks(e.target.value);
     }}>
       <option value="AAPL">Apple</option>
       <option value="GOOGL">Google</option>
