@@ -1,6 +1,5 @@
 import React          from 'react';
 import { LineChart }  from 'rd3';
-import Spinner        from 'react-spinner'
 
 const Chart = ({stockData, isFetching}) => {
   if (isFetching) {

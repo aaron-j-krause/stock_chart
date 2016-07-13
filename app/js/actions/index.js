@@ -36,6 +36,23 @@ export const getStocks = (stock) => {
   }
 };
 
+export const updateCompanies = (companies) => {
+  return {
+    type: 'UPDATE_COMPANIES',
+    companies
+  };
+};
+
+
+export const getCompanies = () => {
+  return (dispatch) => {
+    request('/stocks')
+      .then(res => JSON.parse(res.body))
+      .then(data => dispatch(updateCompanies(data.companies)))
+      .catch(err => console.log(err));
+  };
+};
+
 function parseData(dataSet) {
   let data    = [];
   let highest = Number(dataSet[0].Adj_Close);

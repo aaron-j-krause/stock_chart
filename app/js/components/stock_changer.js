@@ -1,14 +1,14 @@
 import React from 'react';
 
-const StockChanger = ({onGetStocks}) => (
+const StockChanger = ({getStocks, companies}) => {
+  return (
     <select onChange={(e) => {
-      onGetStocks(e.target.value);
+      getStocks(e.target.value);
     }}>
-      <option value="AAPL">Apple</option>
-      <option value="GOOGL">Google</option>
-      <option value="FB">Facebook</option>
-      <option value="AMZN">Amazon</option>
+      {companies.map( (company, index) => (
+        <option key={index} value={company.symbol}>{company.name}</option>
+        ))}
     </select>
-  );
+  )};
 
 export default StockChanger;
