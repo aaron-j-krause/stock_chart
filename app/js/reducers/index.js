@@ -12,6 +12,7 @@ const initialState = {
 };
 
 const stocksApp = (state = initialState, action) => {
+
   switch (action.type) {
   case 'CHANGE_STOCK':
     return Object.assign({}, state, {

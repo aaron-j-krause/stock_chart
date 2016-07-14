@@ -5,7 +5,6 @@ class StockSelector extends React.Component {
     super(props);
   }
 
-
   render() {
     return (<select onChange={this.props.newStock}>
       <option value="AAPL">Apple</option>

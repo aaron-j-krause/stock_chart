@@ -26,11 +26,12 @@ export const getStocks = (stock) => {
         + startDate + '" and endDate = "'
         + endDate + '"');
 
-    let fullUrl = url + 'q=' + data + '&env=http%3A%2F%2Fdatatables.org%2Falltables.env&format=json'
-
+    let fullUrl = url + 'q=' + data + '&env=http%3A%2F%2Fdatatables.org%2Falltables.env&format=json';
 
     request(fullUrl)
-      .then(res => parseData(res.body.query.results.quote))
+      .then(res => {
+        return parseData(res.body.query.results.quote)}
+        )
       .then(data => dispatch(updateStocks(data)))
       .catch(err => console.log(err));
   }
