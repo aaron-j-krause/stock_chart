@@ -1,6 +1,6 @@
 import React from 'react';
 
-const StockChanger = ({getStocks, companies}) => {
+const StockSelector = ({getStocks, companies}) => {
   return (
     <select onChange={(e) => {
       getStocks(e.target.value);
@@ -11,4 +11,4 @@ const StockChanger = ({getStocks, companies}) => {
     </select>
   )};
 
-export default StockChanger;
+export default StockSelector;

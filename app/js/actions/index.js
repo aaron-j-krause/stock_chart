@@ -1,4 +1,5 @@
 import request from 'superagent';
+import moment from 'moment';
 
 export const changeStock = (stock) => {
   return {type: 'CHANGE_STOCK', stock};
@@ -15,11 +16,8 @@ export const getStocks = (stock) => {
 
     let url = 'http://query.yahooapis.com/v1/public/yql?';
 
-    let date = new Date();
-    let {year, day, month} = [date.getFullYear(), date.getDate(), date.getMonth()];
-
-    let startDate = `${date.getFullYear()}-01-01`;
-    let endDate = `${year}-${month}-${day}`;
+    let startDate = moment().format('YYYY-01-01');
+    let endDate = moment().format('YYYY-DD-MM');
 
     let data = encodeURIComponent('select * from yahoo.finance.historicaldata where symbol in ("'
         + stock + '") and startDate = "'
@@ -47,7 +45,7 @@ export const updateCompanies = (companies) => {
 
 export const getCompanies = () => {
   return (dispatch) => {
-    request('/stocks')
+    request('http://localhost:3000/stocks')
       .then(res => JSON.parse(res.body))
       .then(data => dispatch(updateCompanies(data.companies)))
       .catch(err => console.log(err));

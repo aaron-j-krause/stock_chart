@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import StockChanger from '../components/stock_changer';
+import StockSelector from '../components/stock_selector';
 import { changeStock, getStocks } from '../actions';
 
 const mapDispatchToProps = (dispatch) => {
@@ -16,6 +16,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const ChangeStock = connect(mapStateToProps, mapDispatchToProps)(StockChanger);
+const SelectStock = connect(mapStateToProps, mapDispatchToProps)(StockSelector);
 
-export default ChangeStock;
+export default SelectStock;

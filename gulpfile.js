@@ -46,7 +46,12 @@ gulp.task('copy:assets', () => {
 
 gulp.task('bundle', () => {
   return gulp.src(paths.js)
-    .pipe(webpack(webpackConf))
+    .pipe(webpack(webpackConf,
+      null, (err, stats) => {
+        console.log('hello')
+        if (err) console.log(err);
+        console.log(stats);
+      }))
     .pipe(gulp.dest(paths.build));
 });
 

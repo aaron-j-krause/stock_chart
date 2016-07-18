@@ -3,7 +3,7 @@ import ReactDom from 'react-dom';
 import request  from 'superagent';
 
 import { LineChart }      from 'rd3';
-import ChangeStock        from './containers/change_stock';
+import SelectStock        from './containers/select_stock';
 import Header             from './containers/header';
 import RenderChart        from './containers/render_chart'
 
@@ -25,7 +25,7 @@ let MainView = () => (
     <main className="home">
       <Header/>
       <RenderChart/>
-      <ChangeStock/>
+      <SelectStock/>
     </main>);
 
 ReactDom.render(
