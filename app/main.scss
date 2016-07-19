@@ -28,6 +28,15 @@ select {
   width: 60%;
 }
 
+.filler-div {
+  width: 800px;
+  height: 500px;
+  border: 2px solid $darkpastel;
+  h2 {
+    text-align: center;
+    margin: 30% 0;
+  }
+}
 
 .container {
   max-width: 800px;
@@ -82,9 +91,6 @@ circle {
 }
 
 .spinner {
-  width: 800px;
-  height: 500px;
-  border: 2px solid $darkpastel;
   background-image: url("./ajax-loader.gif");
   background-repeat: no-repeat;
   background-position: center;

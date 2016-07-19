@@ -1,9 +1,12 @@
 import React          from 'react';
 import { LineChart }  from 'rd3';
 
-const Chart = ({stockData, isFetching}) => {
-  if (isFetching) {
-    return (<div className="spinner">
+const Chart = ({stockData, isFetching, fetchError}) => {
+  if (isFetching || fetchError) {
+    let classes = `filler-div ${isFetching && !fetchError ? 'spinner' :''}`;
+    let errorMessage = fetchError ? <h2>Error retreiving stocks</h2> : '';
+    return (<div className={classes}>
+        {errorMessage}
       </div>);
   }
   return (<LineChart data={stockData}

@@ -29,6 +29,12 @@ export const updateCompanies = (companies) => {
   };
 };
 
+export const requestStocksError = () => {
+  return {
+    type: 'REQUEST_STOCKS_ERROR'
+  };
+};
+
 //thunk generators
 
 export const getStocks = () => {
@@ -49,10 +55,11 @@ export const getStocks = () => {
 
     request(fullUrl)
       .then(res => {
-        return parseData(res.body.query.results.quote)}
-        )
+        if (res.body.query.results === null) throw new Error('request stocks error');
+        return parseData(res.body.query.results.quote);
+      })
       .then(data => dispatch(updateStocks(data)))
-      .catch(err => console.log(err));
+      .catch(() => dispatch(requestStocksError()));
   };
 
   //parses data for rd3 chart
