@@ -4,7 +4,7 @@ import { LineChart }  from 'rd3';
 const Chart = ({stockData, isFetching}) => {
   if (isFetching) {
     return (<div className="spinner">
-      </div>)
+      </div>);
   }
   return (<LineChart data={stockData}
     domain={{x:[stockData.xMax, stockData.xMin],
@@ -18,7 +18,7 @@ const Chart = ({stockData, isFetching}) => {
 
     height={500}
     width={1000}
-  />)
+  />);
 };
 
 export default Chart;

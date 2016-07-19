@@ -48,7 +48,7 @@ gulp.task('bundle', () => {
   return gulp.src(paths.js)
     .pipe(webpack(webpackConf,
       null, (err, stats) => {
-        console.log('hello')
+        console.log('hello');
         if (err) console.log(err);
         console.log(stats);
       }))

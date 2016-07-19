@@ -4,15 +4,17 @@ import { changeStock, getStocks } from '../actions';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getStocks: (stock) => {
-      dispatch(getStocks(stock));
+    getStocks: (stock, start, end) => {
+      dispatch(getStocks(stock, start, end));
     }
   };
 };
 
 const mapStateToProps = (state) => {
   return {
-    companies: state.companies
+    companies: state.companies,
+    startDate: state.startDate,
+    endDate: state.endDate
   };
 };
 

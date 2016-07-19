@@ -6,18 +6,26 @@ export const changeStock = (stock) => {
 };
 
 export const updateStocks = (stockData) => {
-  return {type: 'UPDATE_STOCK', stockData}
+  return {type: 'UPDATE_STOCK', stockData};
 };
 
-export const getStocks = (stock) => {
+export const setStartDate = (date) => {
+  return {type: 'SET_START_DATE', date};
+};
+
+export const setEndDate = (date) => {
+  return {type: 'SET_END_DATE', date};
+};
+
+export const getStocks = (stock, start, end) => {
   return (dispatch) => {
 
     dispatch(changeStock(stock));
 
     let url = 'http://query.yahooapis.com/v1/public/yql?';
 
-    let startDate = moment().format('YYYY-01-01');
-    let endDate = moment().format('YYYY-DD-MM');
+    let startDate = start || moment().format('YYYY-MM-01');
+    let endDate = end || moment().format('YYYY-MM-DD');
 
     let data = encodeURIComponent('select * from yahoo.finance.historicaldata where symbol in ("'
         + stock + '") and startDate = "'
@@ -32,7 +40,7 @@ export const getStocks = (stock) => {
         )
       .then(data => dispatch(updateStocks(data)))
       .catch(err => console.log(err));
-  }
+  };
 };
 
 export const updateCompanies = (companies) => {
@@ -69,7 +77,6 @@ function parseData(dataSet) {
 
     data.push({x: new Date(e.Date), y:e.Adj_Close});
   });
-
 
   var lineData = [
     {
