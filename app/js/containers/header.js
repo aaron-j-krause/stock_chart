@@ -2,7 +2,14 @@ import React        from 'react';
 import { connect }  from 'react-redux';
 
 let Header = ({stock}) => (
-  <h1>Adjusted Close for {stock}</h1>
+  <header>
+    <h1 style={{
+      fontSize: (() => {
+        if (stock.length > 30) return '45px';
+        if (stock.length > 50) return '35px';
+      })()
+    }}>Adjusted Close for {stock}</h1>
+  </header>
   );
 
 const mapStateToProps = (state) => {

@@ -10,13 +10,17 @@ $columbia: #C4D7F2;
 html, body {
   height: 100%;
 }
+
 #controller_view {
   height: 100%;
   background-color: $columbia;
 }
 
-h1 {
-  text-align: center;
+header {
+  height: 120px;
+  h1 {
+    text-align: center;
+  }
 }
 
 select {

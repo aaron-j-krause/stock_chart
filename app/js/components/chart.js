@@ -4,11 +4,12 @@ import { LineChart }  from 'rd3';
 const Chart = ({stockData, isFetching, fetchError}) => {
   if (isFetching || fetchError) {
     let classes = `filler-div ${isFetching && !fetchError ? 'spinner' :''}`;
-    let errorMessage = fetchError ? <h2>Error retreiving stocks</h2> : '';
+    let errorMessage = fetchError ? <h2>Error retrieving stocks</h2> : '';
     return (<div className={classes}>
         {errorMessage}
       </div>);
   }
+
   return (<LineChart data={stockData}
     domain={{x:[stockData.xMax, stockData.xMin],
       y:[stockData.yMin, stockData.yMax]}}
