@@ -16,7 +16,7 @@ import { getStocks,
 
 const store = createStore(stocksApp, applyMiddleware(thunkMiddleware));
 
-store.dispatch(getStocks('AAPL'));
+store.dispatch(getStocks());
 store.dispatch(getCompanies());
 
 let MainView = () => (

@@ -1,7 +1,8 @@
 import React from 'react';
 import DateSelector from '../components/date_selector';
 import { setStartDate,
-         setEndDate} from '../actions';
+         setEndDate,
+         getStocks } from '../actions';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
@@ -15,10 +16,12 @@ const mapDispatchToProps = (dispatch) => {
   return {
     startChange: (date) => {
       dispatch(setStartDate(date.format('YYYY-MM-DD')));
+      dispatch(getStocks());
     },
 
     endChange: (date) => {
       dispatch(setEndDate(date.format('YYYY-MM-DD')));
+      dispatch(getStocks());
     }
   };
 };

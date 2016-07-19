@@ -1,6 +1,5 @@
 import { expect } from 'chai';
-import stocksApp from '../app/js/reducers'
-
+import stocksApp from '../app/js/reducers';
 
 describe('reducer tests', () => {
   it('initial state', () => {

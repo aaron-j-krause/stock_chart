@@ -16,11 +16,11 @@ const initialState = {
 };
 
 const stocksApp = (state = initialState, action) => {
-  // console.log(action, state);
+  console.log(action, state);
   switch (action.type) {
   case 'CHANGE_STOCK':
     return Object.assign({}, state, {
-      stock: action.stock,
+      selectedStockSymbol: action.stock,
       isFetching: true
     });
 
@@ -47,6 +47,11 @@ const stocksApp = (state = initialState, action) => {
     return Object.assign({}, state, {
       companies: action.companies,
       symbolMap
+    });
+
+  case 'REQUEST_STOCKS':
+    return Object.assign({}, state, {
+      isFetching: true
     });
   }
 

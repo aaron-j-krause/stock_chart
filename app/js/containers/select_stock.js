@@ -4,8 +4,9 @@ import { changeStock, getStocks } from '../actions';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getStocks: (stock, start, end) => {
-      dispatch(getStocks(stock, start, end));
+    onChange: (stock) => {
+      dispatch(changeStock(stock));
+      dispatch(getStocks());
     }
   };
 };

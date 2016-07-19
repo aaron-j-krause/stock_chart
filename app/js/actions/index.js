@@ -1,5 +1,6 @@
 import request from 'superagent';
-import moment from 'moment';
+
+//pure action generators
 
 export const changeStock = (stock) => {
   return {type: 'CHANGE_STOCK', stock};
@@ -17,15 +18,27 @@ export const setEndDate = (date) => {
   return {type: 'SET_END_DATE', date};
 };
 
-export const getStocks = (stock, start, end) => {
-  return (dispatch) => {
+export const requestStocks = () => {
+  return {type: 'REQUEST_STOCKS'};
+};
 
-    dispatch(changeStock(stock));
+export const updateCompanies = (companies) => {
+  return {
+    type: 'UPDATE_COMPANIES',
+    companies
+  };
+};
+
+//thunk generators
+
+export const getStocks = () => {
+  return (dispatch, getState) => {
+    let startDate = getState().startDate;
+    let endDate = getState().endDate;
+    let stock = getState().selectedStockSymbol;
+    dispatch(requestStocks());
 
     let url = 'http://query.yahooapis.com/v1/public/yql?';
-
-    let startDate = start || moment().format('YYYY-MM-01');
-    let endDate = end || moment().format('YYYY-MM-DD');
 
     let data = encodeURIComponent('select * from yahoo.finance.historicaldata where symbol in ("'
         + stock + '") and startDate = "'
@@ -41,15 +54,40 @@ export const getStocks = (stock, start, end) => {
       .then(data => dispatch(updateStocks(data)))
       .catch(err => console.log(err));
   };
-};
 
-export const updateCompanies = (companies) => {
-  return {
-    type: 'UPDATE_COMPANIES',
-    companies
-  };
-};
+  //parses data for rd3 chart
+  function parseData(dataSet) {
+    let data    = [];
+    let highest = Number(dataSet[0].Adj_Close);
+    let lowest  = Number(dataSet[0].Adj_Close);
 
+    dataSet = dataSet;
+
+    dataSet.forEach((e)=> {
+      e.Adj_Close = Number(e.Adj_Close);
+      if (e.Adj_Close > highest) highest = e.Adj_Close;
+      if (e.Adj_Close < lowest) {
+
+        lowest = e.Adj_Close;
+      }
+
+      data.push({x: new Date(e.Date), y:e.Adj_Close});
+    });
+
+    var lineData = [
+      {
+        name: 'series1',
+        values: data
+
+      }];
+    lineData.yMax = highest;
+    lineData.yMin = lowest;
+    lineData.xMin = new Date(dataSet[0].Date);
+    lineData.xMax = new Date(dataSet[dataSet.length - 1].Date);
+
+    return lineData;
+  }
+};
 
 export const getCompanies = () => {
   return (dispatch) => {
@@ -60,34 +98,3 @@ export const getCompanies = () => {
   };
 };
 
-function parseData(dataSet) {
-  let data    = [];
-  let highest = Number(dataSet[0].Adj_Close);
-  let lowest  = Number(dataSet[0].Adj_Close);
-
-  dataSet = dataSet;
-
-  dataSet.forEach((e)=> {
-    e.Adj_Close = Number(e.Adj_Close);
-    if (e.Adj_Close > highest) highest = e.Adj_Close;
-    if (e.Adj_Close < lowest) {
-
-      lowest = e.Adj_Close;
-    }
-
-    data.push({x: new Date(e.Date), y:e.Adj_Close});
-  });
-
-  var lineData = [
-    {
-      name: 'series1',
-      values: data
-
-    }];
-  lineData.yMax = highest;
-  lineData.yMin = lowest;
-  lineData.xMin = new Date(dataSet[0].Date);
-  lineData.xMax = new Date(dataSet[dataSet.length - 1].Date);
-
-  return lineData;
-}
