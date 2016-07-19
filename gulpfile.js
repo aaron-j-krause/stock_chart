@@ -7,7 +7,8 @@ const paths = {
   html: './app/index.html',
   scss: './app/**/*.scss',
   build: './build',
-  assets: './assets/*'
+  assets: './assets/*',
+  css: './app/**/*.css'
 };
 
 const webpackConf = {
@@ -35,28 +36,18 @@ gulp.task('sass', () => {
 });
 
 gulp.task('copy', () => {
-  return gulp.src(paths.html)
-    .pipe(gulp.dest(paths.build));
-});
-
-gulp.task('copy:assets', () => {
-  return gulp.src(paths.assets)
+  return gulp.src([paths.html, paths.css, paths.assets])
     .pipe(gulp.dest(paths.build));
 });
 
 gulp.task('bundle', () => {
   return gulp.src(paths.js)
-    .pipe(webpack(webpackConf,
-      null, (err, stats) => {
-        console.log('hello');
-        if (err) console.log(err);
-        console.log(stats);
-      }))
+    .pipe(webpack(webpackConf))
     .pipe(gulp.dest(paths.build));
 });
 
 
-gulp.task('default', ['copy', 'copy:assets', 'sass', 'bundle']);
+gulp.task('default', ['copy', 'sass', 'bundle']);
 
 gulp.task('watch', () => {
   gulp.watch('./app/**/*', ['default']);

@@ -20,7 +20,7 @@ store.dispatch(getStocks('AAPL'));
 store.dispatch(getCompanies());
 
 let MainView = () => (
-    <main className="home">
+    <main className="container">
       <Header/>
       <RenderChart/>
       <SelectStock/>
@@ -30,6 +30,6 @@ let MainView = () => (
 ReactDom.render(
   <Provider store={store}>
     <MainView/>
-  </Provider>, document.getElementById('controller-view'));
+  </Provider>, document.getElementById('controller_view'));
 
 

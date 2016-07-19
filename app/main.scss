@@ -1,21 +1,90 @@
 @import 'react-datepicker.scss';
+
+$electric: #90FCF9;
+$iceberg: #63B4D1;
+$darkpastel: #7699D4;
+$honeydew: #F0F7EE;
+$columbia: #C4D7F2;
+
+
+html, body {
+  height: 100%;
+}
+#controller_view {
+  height: 100%;
+  background-color: $columbia;
+}
+
+h1 {
+  text-align: center;
+}
+
+select {
+  width: 100%;
+  text-align: center;
+}
+
 .home {
   width: 60%;
 }
 
 
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  height: 100%;
+
+}
+
 svg {
-  border: 1px solid blue;
+  border: 2px solid $darkpastel;
 }
 
 circle {
   color: black;
 }
 
+.react-datepicker__input-container {
+  width: 50%;
+
+  .picker-input {
+    width: 100%;
+    color: transparent;
+    &:hover {
+      cursor: pointer;
+
+    }
+  }
+
+  ::-webkit-input-placeholder {
+     color: black;
+     opacity: 1;
+     text-align: center;
+  }
+
+  :-moz-placeholder {
+     color: black;
+     opacity: 1;
+     text-align: center;
+  }
+
+  ::-moz-placeholder {
+     color: black;
+     opacity: 1;
+     text-align: center;
+  }
+
+  :-ms-input-placeholder {
+     color: black;
+     opacity: 1;
+     text-align: center;
+  }
+}
+
 .spinner {
-  width: 1000px;
+  width: 800px;
   height: 500px;
-  border: 1px solid blue;
+  border: 2px solid $darkpastel;
   background-image: url("./ajax-loader.gif");
   background-repeat: no-repeat;
   background-position: center;

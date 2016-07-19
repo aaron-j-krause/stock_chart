@@ -12,12 +12,12 @@ const Chart = ({stockData, isFetching}) => {
     viewBoxObject={{
       x:0,
       y:0,
-      width: 1000,
+      width: 800,
       height: 500
     }}
 
     height={500}
-    width={1000}
+    width={800}
   />);
 };
 
