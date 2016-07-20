@@ -1,4 +1,3 @@
-import React from 'react';
 import DateSelector from '../components/date_selector';
 import { setStartDate,
          setEndDate,

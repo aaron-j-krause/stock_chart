@@ -68,20 +68,17 @@ export const getStocks = () => {
     let highest = Number(dataSet[0].Adj_Close);
     let lowest  = Number(dataSet[0].Adj_Close);
 
-    dataSet = dataSet;
-
     dataSet.forEach((e)=> {
       e.Adj_Close = Number(e.Adj_Close);
       if (e.Adj_Close > highest) highest = e.Adj_Close;
       if (e.Adj_Close < lowest) {
-
         lowest = e.Adj_Close;
       }
 
       data.push({x: new Date(e.Date), y:e.Adj_Close});
     });
 
-    var lineData = [
+    let lineData = [
       {
         name: 'series1',
         values: data

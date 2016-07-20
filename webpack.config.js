@@ -1,6 +1,6 @@
 //for hot loader, build in gulpfile
 
-const config = module.exports = {
+module.exports = {
   module: {
     loaders: [
       {

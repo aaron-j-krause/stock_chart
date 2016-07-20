@@ -14,5 +14,4 @@ app.get('/stocks', (req, res) => {
   res.json(companyData);
 });
 
-
 app.listen(3000, () => console.log('server up on 3000'));

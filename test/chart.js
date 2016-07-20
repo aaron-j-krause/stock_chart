@@ -34,7 +34,7 @@ describe('<Chart/>', () => {
     expect(component.type).to.eql('div');
     expect(component.props.className).to.eql('filler-div ');
     expect(component.props.children.type).to.eql('h2');
-    expect(component.props.children.props.children).to.eql('Error retrieving stocks')
+    expect(component.props.children.props.children).to.eql('Error retrieving stocks');
   });
 
   it('should render a spinner on fetch', () => {
