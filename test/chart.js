@@ -8,7 +8,7 @@ describe('<Chart/>', () => {
     let component;
     let renderer = TestUtils.createRenderer();
     let props = {
-      stockData: 'test',
+      stockData: ['test'],
       isFetching: false,
       fetchError: false
     };
@@ -16,14 +16,14 @@ describe('<Chart/>', () => {
     renderer.render((<Chart {...props}/>));
     component = renderer.getRenderOutput();
     expect(component.type.displayName).to.eql('LineChart');
-    expect(component.props.data).to.eql('test');
+    expect(component.props.data[0]).to.eql('test');
   });
 
   it('should render an error on error', () => {
     let component;
     let renderer = TestUtils.createRenderer();
     let props = {
-      stockData: 'test',
+      stockData: ['test'],
       isFetching: false,
       fetchError: true
     };
@@ -41,7 +41,7 @@ describe('<Chart/>', () => {
     let component;
     let renderer = TestUtils.createRenderer();
     let props = {
-      stockData: 'test',
+      stockData: ['test'],
       isFetching: true,
       fetchError: false
     };

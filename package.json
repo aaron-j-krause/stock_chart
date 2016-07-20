@@ -1,10 +1,11 @@
 {
   "name": "fintech",
   "version": "1.0.0",
-  "description": "",
-  "main": "gulpfile.js",
+  "description": "A stock market chart app built with React and Redux",
+  "main": "server.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register --recursive"
+    "test": "node ./node_modules/mocha/bin/mocha --compilers js:babel-core/register --recursive",
+    "start": "node ./node_modules/gulp/bin/gulp.js production && node server.js"
   },
   "keywords": [],
   "author": "",
@@ -21,12 +22,11 @@
     "express": "^4.13.4",
     "gulp": "^3.9.1",
     "gulp-eslint": "^3.0.1",
-    "gulp-gzip": "^1.4.0",
     "gulp-minify": "0.0.13",
+    "gulp-mocha": "^2.2.0",
     "gulp-sass": "^2.3.2",
     "mocha": "^2.5.3",
     "moment": "^2.14.1",
-    "nock": "^8.0.0",
     "node-sass": "^3.8.0",
     "rd3": "^0.6.4",
     "react": "^15.1.0",
@@ -39,12 +39,9 @@
     "redux-thunk": "^2.1.0",
     "skeleton-css": "^2.0.4",
     "superagent": "^2.0.0",
-    "superagent-nock": "^0.1.1",
     "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1",
     "webpack-stream": "^3.2.0"
   },
   "dependencies": {
-    "webpack-dev-server": "^1.14.1"
   }
 }

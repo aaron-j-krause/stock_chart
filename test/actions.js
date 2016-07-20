@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import * as actions from '../app/js/actions';
 
-describe('Action Test', () => {
+describe('Actions', () => {
   it('change stock', () => {
     let testAction = actions.changeStock('test');
 
@@ -48,7 +48,4 @@ describe('Action Test', () => {
 
     expect(testAction.type).to.eql('REQUEST_STOCKS_ERROR');
   });
-
-  //need mock backend
-  it('get stocks');
 });

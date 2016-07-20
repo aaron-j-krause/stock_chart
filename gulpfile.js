@@ -1,9 +1,12 @@
-const gulp = require('gulp');
-const webpack = require('webpack-stream');
-const wp = require('webpack');
-const sass = require('gulp-sass');
-const eslint = require('gulp-eslint');
+//for tests
+require('babel-core/register');
 
+const gulp    = require('gulp');
+const webpack = require('webpack-stream');
+const wp      = require('webpack');
+const sass    = require('gulp-sass');
+const eslint  = require('gulp-eslint');
+const mocha   = require('gulp-mocha');
 
 const paths = {
   js: './app/js/client.js',
@@ -11,7 +14,8 @@ const paths = {
   scss: './app/**/*.scss',
   build: './build',
   assets: './assets/*',
-  css: './app/**/*.css'
+  css: './app/**/*.css',
+  test: './test/**/*.js'
 };
 
 gulp.task('lint', () => {
@@ -84,9 +88,14 @@ gulp.task('sass:production', () => {
     .pipe(gulp.dest(paths.build));
 });
 
+gulp.task('test', () => {
+  return gulp.src(paths.test)
+    .pipe(mocha({bail: true}));
+});
+
 gulp.task('default', ['copy', 'sass', 'bundle']);
 
-gulp.task('production', ['copy', 'sass:production', 'bundle:production']);
+gulp.task('production', ['test', 'lint', 'copy', 'sass:production', 'bundle:production']);
 
 gulp.task('watch', () => {
   gulp.watch('./app/**/*', ['default']);

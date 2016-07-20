@@ -3,7 +3,7 @@ import React          from 'react';
 import TestUtils      from 'react-addons-test-utils';
 import StockSelector  from '../app/js/components/stock_selector';
 
-describe('Stock Selector', () => {
+describe('<StockSelector/>', () => {
   let component;
   beforeEach(() => {
     let renderer = TestUtils.createRenderer();
@@ -11,7 +11,8 @@ describe('Stock Selector', () => {
       getStocks: () => {},
       companies: [{name: 'Test', symbol: 'TSST'}],
       startDate: new Date(),
-      endDate: new Date()
+      endDate: new Date(),
+      onChange: function(){}
     };
 
     renderer.render((<StockSelector {...props}/>));
@@ -25,6 +26,4 @@ describe('Stock Selector', () => {
     expect(component.props.children.length).to.eql(1);
     expect(testOption.props.value).to.eql('TSST');
   });
-  //might be best to bring in spies
-  it('should send a test value by default');
 });
