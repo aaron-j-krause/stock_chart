@@ -1,1 +1,1 @@
-Simple React/Redux/D3 Chart App
+React/Redux Stock Chart App
