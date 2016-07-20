@@ -15,7 +15,7 @@ const paths = {
 };
 
 gulp.task('lint', () => {
-  return gulp.src(['**/*.js','!node_modules/**'])
+  return gulp.src(['./app/**/*.js', 'gulpfile.js', '!node_modules/**'])
     .pipe(eslint(__dirname + '/.eslintrc'))
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());

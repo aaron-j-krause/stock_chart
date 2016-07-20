@@ -1,5 +1,5 @@
-import React from 'react';
-import DatePicker from 'react-datepicker';
+import React, { PropTypes } from 'react';
+import DatePicker           from 'react-datepicker';
 
 const DateSelector = ({startDate, endDate, startChange, endChange}) => (
   <div>
@@ -17,5 +17,12 @@ const DateSelector = ({startDate, endDate, startChange, endChange}) => (
     />
   </div>
   );
+
+DateSelector.propTypes = {
+  startDate: PropTypes.string.isRequired,
+  endDate: PropTypes.string.isRequired,
+  startChange: PropTypes.func.isRequired,
+  endChange: PropTypes.func.isRequired
+};
 
 export default DateSelector;

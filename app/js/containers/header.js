@@ -1,21 +1,25 @@
-import React        from 'react';
-import { connect }  from 'react-redux';
+import React, { PropTypes } from 'react';
+import { connect }          from 'react-redux';
 
-let Header = ({stock}) => (
+let Header = ({stockName}) => (
   <header>
     <h1 style={{
       fontSize: (() => {
-        if (stock.length > 30) return '45px';
-        if (stock.length > 50) return '35px';
+        if (stockName.length > 30) return '45px';
+        if (stockName.length > 50) return '35px';
       })()
-    }}>Adjusted Close for {stock}</h1>
+    }}>Adjusted Close for {stockName}</h1>
   </header>
-  );
+);
 
 const mapStateToProps = (state) => {
   return {
-    stock: state.selectedStockName
+    stockName: state.selectedStockName
   };
+};
+
+Header.propTypes = {
+  stockName: PropTypes.string.isRequired
 };
 
 Header = connect(mapStateToProps, null)(Header);

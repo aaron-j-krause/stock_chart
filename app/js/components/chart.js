@@ -1,5 +1,5 @@
-import React          from 'react';
-import { LineChart }  from 'rd3';
+import React, { PropTypes } from 'react';
+import { LineChart }        from 'rd3';
 
 const Chart = ({stockData, isFetching, fetchError}) => {
   if (isFetching || fetchError) {
@@ -23,6 +23,12 @@ const Chart = ({stockData, isFetching, fetchError}) => {
     height={500}
     width={800}
   />);
+};
+
+Chart.propTypes = {
+  stockData: PropTypes.array,
+  isFetching: PropTypes.bool.isRequired,
+  fetchError: PropTypes.bool.isRequired
 };
 
 export default Chart;

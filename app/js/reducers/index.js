@@ -1,5 +1,6 @@
 import moment from 'moment';
 
+//TODO modularize with combine reducers
 const initialState = {
   stock: 'AAPL',
   selectedStockName: 'Apple',
@@ -43,12 +44,12 @@ const stocksApp = (state = initialState, action) => {
     });
 
   case 'UPDATE_COMPANIES':
-    let symbolMap = {};
-
-    action.companies.forEach(company => symbolMap[company.symbol] = company.name);
     return Object.assign({}, state, {
       companies: action.companies,
-      symbolMap
+      symbolMap: action.companies.reduce((map, company) => {
+        map[company.symbol] = company.name;
+        return map;
+      }, {})
     });
 
   case 'REQUEST_STOCKS':
