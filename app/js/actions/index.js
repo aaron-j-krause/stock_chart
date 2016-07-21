@@ -65,11 +65,11 @@ export const getStocks = () => {
   //parses data for rd3 chart
   function parseData(dataSet) {
     let data    = [];
-    let highest = Number(dataSet[0].Adj_Close);
-    let lowest  = Number(dataSet[0].Adj_Close);
+    let highest = stringToTruncatedNumber(dataSet[0].Adj_Close);
+    let lowest  = stringToTruncatedNumber(dataSet[0].Adj_Close);
 
     dataSet.forEach((e)=> {
-      e.Adj_Close = Number(e.Adj_Close);
+      e.Adj_Close = stringToTruncatedNumber(e.Adj_Close);
       if (e.Adj_Close > highest) highest = e.Adj_Close;
       if (e.Adj_Close < lowest) {
         lowest = e.Adj_Close;
@@ -90,6 +90,11 @@ export const getStocks = () => {
     lineData.xMax = new Date(dataSet[dataSet.length - 1].Date);
 
     return lineData;
+
+    function stringToTruncatedNumber(str) {
+      str = str.slice(0, str.indexOf('.') + 3);
+      return Number(str);
+    }
   }
 };
 

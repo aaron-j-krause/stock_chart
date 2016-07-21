@@ -26,6 +26,7 @@ header {
 select {
   width: 100%;
   text-align: center;
+  letter-spacing: 2px;
 }
 
 .home {
@@ -36,6 +37,8 @@ select {
   width: 800px;
   height: 500px;
   border: 2px solid $darkpastel;
+  margin-bottom: 7px;
+  overflow: hidden;
   h2 {
     text-align: center;
     margin: 30% 0;
@@ -46,7 +49,6 @@ select {
   max-width: 800px;
   margin: 0 auto;
   height: 100%;
-
 }
 
 svg {
@@ -63,6 +65,9 @@ circle {
   .picker-input {
     width: 100%;
     color: transparent;
+    text-shadow: 0 0 0 black;
+    text-align: center;
+    letter-spacing: 2px;
     &:hover {
       cursor: pointer;
 
